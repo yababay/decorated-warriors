@@ -20,16 +20,13 @@ class KolobokStory {
     #parents: Parents
     #persons: Person[]
     #hero: string
-    #deceived: Person[] = [grandfather, grandmother]
+    #deceived: Person[]
 
     constructor(hero = 'Колобок', parents = {male: grandfather, female: grandmother}, persons = [hare, wolf, bear, fox]){
         this.#hero = hero
         this.#parents = parents
         this.#persons = persons
-    }
-
-    get hero(){
-        return this.#hero
+        this.#deceived = [this.#parents.male, this.#parents.female]
     }
 
     preface(): string[]{
@@ -54,7 +51,7 @@ class KolobokStory {
 
     upshot(person: Person): string[]{
         return [
-            `— Какая славная песенка! — говорит ${person.nominative}. — Но ведь я, ${this.#hero}, стара стала, плохо слышу; сядь-ка на мою мордочку да пропой еще разок погромче.`,
+            `— Какая славная песенка! — говорит ${person.nominative}. — Но ведь я, ${this.#hero}, плохо слышу; сядь-ка на мою мордочку да пропой еще разок погромче.`,
             `${this.#hero} вскочил на мордочку и запел ту же песню.`,
             `А ${person.nominative} его ам-ням-ням!`
         ]
@@ -88,5 +85,21 @@ class KolobokStory {
     }
 }
 
-const story = new KolobokStory()
+let story = new KolobokStory()
+story.tale()
+
+console.log('\n===================================================\n')
+
+const he: Person = {nominative: 'Шрек', genetive: 'Шрека'}
+const she: Person = {nominative: 'Принцесса Фиона', genetive: 'Принцессы Фионы'}
+const family: Parents = {male: he, female: she}
+
+const evil1: Person = {nominative: 'Лорд Фаркуад', genetive: 'Лорда Фаркуада'}
+const evil2: Person = {nominative: 'Принц Чаминг', genetive: 'Принца Чаминга'}
+const evil3: Person = {nominative: 'Румпельштильцхен', genetive: 'Румпельштильцхена'}
+const evil4: Person = {nominative: 'Фея-крёстная', genetive: 'Феи-крёстной'}
+
+const evils = [evil1, evil2, evil3, evil4]
+
+story = new KolobokStory('Чебурек', family, evils)
 story.tale()
