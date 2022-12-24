@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "kolobok": "ts-node-script kolobok",
+    "repka": "ts-node-script index",
     "warriors": "ts-node-script warriors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
